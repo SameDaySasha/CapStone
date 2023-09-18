@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.models import Listing
 from datetime import datetime
-
+from flask_login import current_user, login_user, logout_user, login_required
 listing_routes = Blueprint('listings', __name__)
 
 
@@ -22,7 +22,7 @@ def get_all_listings():
                 "state": listing.state,
                 "country": listing.country,
                 "zip_code": listing.zip_code,
-                "price": str(listing.price),  # Assuming price is of Decimal type
+                "price": str(listing.price), 
                 "main_image": listing.main_image,
                 "created_at": listing.created_at.strftime('%Y-%m-%dT%H:%M:%SZ'),
                 "updated_at": listing.updated_at.strftime('%Y-%m-%dT%H:%M:%SZ')
