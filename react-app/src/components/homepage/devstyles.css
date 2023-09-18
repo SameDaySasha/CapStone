@@ -1,0 +1,19 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  
+  .item {
+    border: 2px solid limegreen;
+    background-color: rgba(0, 255, 0, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .item-preview {
+    width: 100%; /* Adjust as necessary */
+    height: auto; /* Adjust as necessary */
+    border-radius: 10px; /* Optional: for rounded corners */
+  }
+  
