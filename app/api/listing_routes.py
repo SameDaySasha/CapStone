@@ -1,7 +1,9 @@
 from flask import Blueprint, jsonify, request
-from app.models import Listing
+from app.models import Listing, db
 from datetime import datetime
 from flask_login import current_user, login_user, logout_user, login_required
+from app.forms import CreateListingForm
+
 listing_routes = Blueprint('listings', __name__)
 
 
@@ -69,61 +71,29 @@ def get_listing_by_id(id):
 
 # Create new listing route  -TBT
 @listing_routes.route('/listings', methods=['POST'])
-def create_new_listing():
-    try:
-        data = request.get_json()
-        
-        # Validation: Check if any field is missing or blank
-        errors = {}
-        fields = ["title", "description", "address", "city", "state", "country", "zip_code", "price", "main_image"]
-        for field in fields:
-            if not data.get(field):
-                errors[field] = [f"{field.capitalize()} can't be blank"]
-
-        # If there are errors, return a 400 status code with error messages
-        if errors:
-            return jsonify({"errors": errors}), 400
-
-        # Create a new Listing object with the data from the request
+@login_required
+def create_listing():
+    if current_user.role != 'Manager':
+        return jsonify({"error": "Access forbidden: Insufficient permissions"}), 403
+    form = CreateListingForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    
+    if form.validate_on_submit():
         new_listing = Listing(
-            created_by=1,  # Assuming 1 is the ID of the manager creating the listing
-            title=data["title"],
-            description=data["description"],
-            address=data["address"],
-            city=data["city"],
-            state=data["state"],
-            country=data["country"],
-            zip_code=data["zip_code"],
-            price=data["price"],
-            main_image=data["main_image"],
-            created_at=datetime.utcnow(),
-            updated_at=datetime.utcnow()
+            title=form.data['title'],
+            description=form.data['description'],
+            address=form.data['address'],
+            city=form.data['city'],
+            state=form.data['state'],
+            country=form.data['country'],
+            zip_code=form.data['zip_code'],
+            price=form.data['price'],
+            main_image=form.data['main_image'],
         )
         
-        # Add the new listing to the database and commit the changes
         db.session.add(new_listing)
         db.session.commit()
 
-        # Create a response object with the data of the new listing
-        response = {
-            "id": new_listing.id,
-            "created_by": new_listing.created_by,
-            "title": new_listing.title,
-            "description": new_listing.description,
-            "address": new_listing.address,
-            "city": new_listing.city,
-            "state": new_listing.state,
-            "country": new_listing.country,
-            "zip_code": new_listing.zip_code,
-            "price": str(new_listing.price),  # Assuming price is of Decimal type
-            "main_image": new_listing.main_image,
-            "created_at": new_listing.created_at.strftime('%Y-%m-%dT%H:%M:%SZ'),
-            "updated_at": new_listing.updated_at.strftime('%Y-%m-%dT%H:%M:%SZ')
-        }
-        
-        # Return a 201 status code with the data of the new listing
-        return jsonify(response), 201
-
-    except Exception as e:
-        # If there is a server error, return a 500 status code with an error message
-        return jsonify({"error": "Error with CreateNewListingRoute", "message": "Internal server error", "details": str(e)}), 500
+        return jsonify(new_listing.to_dict()), 201
+    else:
+        return jsonify({'errors': form.errors}), 400
