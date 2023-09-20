@@ -10,5 +10,5 @@ class CreateListingForm(FlaskForm):
     state = StringField('State', validators=[DataRequired(message="State can't be blank")])
     country = StringField('Country', validators=[DataRequired(message="Country can't be blank")])
     zip_code = StringField('Zip Code', validators=[DataRequired(message="Zip Code can't be blank")])
-    price = DecimalField('Price', validators=[DataRequired(message="Price must be a positive number"), NumberRange(min=0)])
+    price = DecimalField('Price', validators=[DataRequired(message="Starting bid must be a non-negative number"), NumberRange(min=0, message="The starting bid must be a non-negative number")])
     main_image = StringField('Main Image', validators=[DataRequired(message="Main Image can't be blank")])

@@ -29,6 +29,8 @@ export const authenticate = () => async (dispatch) => {
 	}
 };
 
+
+
 export const login = (email, password) => async (dispatch) => {
 	const response = await fetch("/api/auth/login", {
 		method: "POST",
@@ -54,6 +56,8 @@ export const login = (email, password) => async (dispatch) => {
 		return ["An error occurred. Please try again."];
 	}
 };
+
+export const selectUser = (state) => state.session.user;
 
 export const logout = () => async (dispatch) => {
 	const response = await fetch("/api/auth/logout", {

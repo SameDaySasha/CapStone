@@ -21,6 +21,15 @@ function LoginFormPage() {
     }
   };
 
+
+  const handleDemoUserLogin = () => {
+    dispatch(login('DemoUserEmail', 'DemoUserPassword')); // Replace with actual demo user credentials
+  };
+
+  const handleAdminLogin = () => {
+    dispatch(login('AdminEmail', 'AdminPassword')); // Replace with actual admin credentials
+  };
+
   return (
     <>
       <h1>Log In</h1>
@@ -49,6 +58,8 @@ function LoginFormPage() {
           />
         </label>
         <button type="submit">Log In</button>
+        <button type="button" onClick={handleDemoUserLogin}>Login as Demo User</button>
+        <button type="button" onClick={handleAdminLogin}>Login as Admin</button>
       </form>
     </>
   );

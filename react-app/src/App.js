@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import ListingsPage from "./components/homepage/homepage"; // Adjust the path according to your project structure
+import ListingDetailPage from "./components/ListingsDetailPage/listingsdetail"; // New import for the detail page component
 
 function App() {
   const dispatch = useDispatch();
@@ -19,11 +20,14 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/login" >
+          <Route path="/login">
             <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/listings/:id" exact>
+            <ListingDetailPage />
           </Route>
           <Route path="/" exact>
             <ListingsPage />
