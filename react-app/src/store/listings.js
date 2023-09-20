@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // homepage/get all listings page 
 export const fetchListings = createAsyncThunk('listings/fetchListings', async () => {
-  const response = await fetch('/api/listings'); // Adjust the endpoint according to your backend setup
+  const response = await fetch('/api/listings');
   const data = await response.json();
   return data;
 });
@@ -15,12 +15,11 @@ export const createListing = createAsyncThunk('listings/createListing', async (n
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(newListingData),
-    credentials: 'include', // Ensure credentials are included
+    credentials: 'include',
   });
   const data = await response.json();
   return data;
 });
-
 
 // new thunk for fetching a single listing by ID
 export const fetchListingById = createAsyncThunk('listings/fetchListingById', async (id) => {
@@ -29,11 +28,25 @@ export const fetchListingById = createAsyncThunk('listings/fetchListingById', as
   return data;
 });
 
+// new thunk for updating a listing
+export const updateListing = createAsyncThunk('listings/updateListing', async ({ id, updatedData }) => {
+  const response = await fetch(`/api/listings/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(updatedData),
+    credentials: 'include',
+  });
+  const data = await response.json();
+  return data;
+});
+
 const listingsSlice = createSlice({
   name: 'listings',
   initialState: {
     listings: [],
-    currentListing: null, // New property to hold the current listing data
+    currentListing: null,
     status: 'idle',
     error: null,
   },
@@ -56,9 +69,24 @@ const listingsSlice = createSlice({
       })
       .addCase(fetchListingById.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.currentListing = action.payload; // Save the fetched listing data in the state
+        state.currentListing = action.payload;
       })
       .addCase(fetchListingById.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(updateListing.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(updateListing.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        const index = state.listings.findIndex(listing => listing.id === action.payload.id);
+        if (index !== -1) {
+          state.listings[index] = action.payload;
+        }
+        state.currentListing = action.payload;
+      })
+      .addCase(updateListing.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
@@ -68,6 +96,6 @@ const listingsSlice = createSlice({
 export default listingsSlice.reducer;
 
 export const selectAllListings = (state) => state.listings.listings;
-export const selectCurrentListing = (state) => state.listings.currentListing; // New selector to select the current listing data
+export const selectCurrentListing = (state) => state.listings.currentListing;
 export const selectStatus = (state) => state.listings.status;
 export const selectError = (state) => state.listings.error;

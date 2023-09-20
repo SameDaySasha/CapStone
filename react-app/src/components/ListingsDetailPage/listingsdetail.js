@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchListingById, selectCurrentListing } from '../../store/listings'; // Adjust the path
 import './ListingDetailPage.css'; // Import the CSS
+import EditButton from '../editfunction/editbutton'; // Import the EditButton component
 
 function ListingDetailPage() {
   const { id } = useParams();
@@ -22,7 +23,10 @@ function ListingDetailPage() {
   return (
     <div className="detail-container">
       <div className="detail-item">
-        <h1 className="detail-item-title">{currentListing.title}</h1>
+        <h1 className="detail-item-title">
+          {currentListing.title} 
+          <EditButton listingId={id} /> {/* Render the EditButton here, passing the listingId as a prop */}
+        </h1>
       </div>
       <div className="detail-item">
         <img src={currentListing.main_image} alt={`${currentListing.title} main image`} />
