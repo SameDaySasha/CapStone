@@ -124,7 +124,7 @@ def update_listing(id):
     errors = {}
     if 'title' in data and not data['title']:
         errors['title'] = ["Title can't be blank"]
-    if 'price' in data and data['price'] <= 0:
+    if 'price' in data and int(float(data['price'])) <= 0:
         errors['price'] = ["Price must be a positive number"]
 
     if errors:
