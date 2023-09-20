@@ -4,6 +4,10 @@ from datetime import datetime
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms import CreateListingForm
 
+
+
+
+
 listing_routes = Blueprint('listings', __name__)
 
 
@@ -71,10 +75,10 @@ def get_listing_by_id(id):
 
 # Create new listing route  -TBT
 @listing_routes.route('/listings', methods=['POST'])
-@login_required
+# @login_required
 def create_listing():
-    if current_user.role != 'Manager':
-        return jsonify({"error": "Access forbidden: Insufficient permissions"}), 403
+    # if current_user.role != 'Manager':
+    #     return jsonify({"error": "Access forbidden: Insufficient permissions"}), 403
     form = CreateListingForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     
