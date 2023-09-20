@@ -15,10 +15,12 @@ export const createListing = createAsyncThunk('listings/createListing', async (n
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(newListingData),
+    credentials: 'include', // Ensure credentials are included
   });
   const data = await response.json();
   return data;
 });
+
 
 // new thunk for fetching a single listing by ID
 export const fetchListingById = createAsyncThunk('listings/fetchListingById', async (id) => {

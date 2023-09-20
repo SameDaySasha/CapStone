@@ -77,13 +77,15 @@ def get_listing_by_id(id):
 @listing_routes.route('/listings', methods=['POST'])
 @login_required
 def create_listing():
-    if current_user.role != 'Manager':
+    if current_user.role != 'manager':
         return jsonify({"error": "Access forbidden: Insufficient permissions"}), 403
     form = CreateListingForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     
     if form.validate_on_submit():
         new_listing = Listing(
+            created_by=current_user.id,
+            last_updated_by=current_user.id,
             title=form.data['title'],
             description=form.data['description'],
             address=form.data['address'],

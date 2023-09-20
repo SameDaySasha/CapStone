@@ -19,3 +19,21 @@ class Listing(db.Model):
     main_image = db.Column(db.String(255), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'created_by': self.created_by,
+            'last_updated_by': self.last_updated_by,
+            'title': self.title,
+            'description': self.description,
+            'address': self.address,
+            'city': self.city,
+            'state': self.state,
+            'country': self.country,
+            'zip_code': self.zip_code,
+            'price': self.price,
+            'main_image': self.main_image,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }
