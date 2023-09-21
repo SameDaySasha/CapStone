@@ -174,7 +174,7 @@ def seed_listings():
         description="Experience the vibrant life of the bustling Factory district in this luxury apartment. Positioned in the heart of the city, this property offers a blend of modern comfort and industrial charm. Enjoy the panoramic views of the city skyline and the convenience of living close to a hub of activity, where the pulse of the city is always within reach.",
         address='Factory District, Loft 7B',
         city='Norvinsk',
-        state='Central Hub',
+        state='Test',
         country='TBD',
         zip_code='00000',
         price=870000.00,
