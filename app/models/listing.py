@@ -1,9 +1,8 @@
 from datetime import datetime
-from .db import db, SCHEMA, add_prefix_for_prod
+from .db import db, SCHEMA, add_prefix_for_prod, environment
 from sqlalchemy import Enum
 import os
 
-environment = os.getenv('ENVIRONMENT')
 
 
 
