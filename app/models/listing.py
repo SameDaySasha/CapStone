@@ -1,6 +1,9 @@
 from datetime import datetime
 from .db import db, SCHEMA
 from sqlalchemy import Enum
+import os
+
+environment = os.getenv('ENVIRONMENT')
 
 
 
