@@ -1,5 +1,5 @@
 from datetime import datetime
-from app.models import db, Listing
+from app.models import db, Listing, SCHEMA, environment
 
 def seed_listings():
     listing1 = Listing(
@@ -334,5 +334,9 @@ def seed_listings():
     db.session.commit()
 
 def undo_listings():
-    db.session.execute('TRUNCATE listings RESTART IDENTITY CASCADE;')
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.listings RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM listings"))
+        
     db.session.commit()
