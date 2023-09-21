@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchListingById, selectCurrentListing } from '../../store/listings'; // Adjust the path
 import './ListingDetailPage.css'; // Import the CSS
 import EditButton from '../editfunction/editbutton'; // Import the EditButton component
+import DeleteButton from '../DeleteFunction/deleteListingButton'; // Import the DeleteButton component
 
 function ListingDetailPage() {
   const { id } = useParams();
@@ -26,6 +27,7 @@ function ListingDetailPage() {
         <h1 className="detail-item-title">
           {currentListing.title} 
           <EditButton listingId={id} /> {/* Render the EditButton here, passing the listingId as a prop */}
+          <DeleteButton listingId={id} /> {/* Render the DeleteButton here, passing the listingId as a prop */}
         </h1>
       </div>
       <div className="detail-item">

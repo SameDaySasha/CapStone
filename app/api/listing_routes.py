@@ -162,3 +162,23 @@ def update_listing(id):
         "created_at": listing.created_at.strftime('%Y-%m-%dT%H:%M:%SZ'),
         "updated_at": listing.updated_at.strftime('%Y-%m-%dT%H:%M:%SZ')
     }), 200
+
+# delete route
+@listing_routes.route('/listings/<int:id>', methods=['DELETE'])
+@login_required
+def delete_listing(id):
+    if current_user.role != 'manager':
+        return jsonify(errors={"detail": "Permission denied"}), 403
+
+    listing = Listing.query.get(id)
+    if not listing:
+        return jsonify(errors={"detail": "Listing not found"}), 404
+
+    try:
+        db.session.delete(listing)
+        db.session.commit()
+        return jsonify(message="Listing deleted successfully"), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify(errors={"detail": str(e)}), 500
+

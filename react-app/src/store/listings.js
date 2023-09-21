@@ -42,6 +42,18 @@ export const updateListing = createAsyncThunk('listings/updateListing', async ({
   return data;
 });
 
+// new thunk for deleting a listing
+export const deleteListing = createAsyncThunk('listings/deleteListing', async (id) => {
+  const response = await fetch(`/api/listings/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+  return response.json();
+});
+
 const listingsSlice = createSlice({
   name: 'listings',
   initialState: {
@@ -87,6 +99,20 @@ const listingsSlice = createSlice({
         state.currentListing = action.payload;
       })
       .addCase(updateListing.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(deleteListing.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(deleteListing.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.listings = state.listings.filter(listing => listing.id !== action.payload.id);
+        if (state.currentListing && state.currentListing.id === action.payload.id) {
+          state.currentListing = null;
+        }
+      })
+      .addCase(deleteListing.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
