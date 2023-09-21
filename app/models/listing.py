@@ -1,9 +1,14 @@
 from datetime import datetime
-from .db import db
+from .db import db, SCHEMA
 from sqlalchemy import Enum
+
+
+
+
 
 class Listing(db.Model):
     __tablename__ = 'listings'
+    __table_args__ = {'schema': SCHEMA} if environment == "production" else None
 
     id = db.Column(db.Integer, primary_key=True)
     created_by = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
