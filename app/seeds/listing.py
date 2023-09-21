@@ -205,7 +205,7 @@ def seed_listings():
         description="Unveil the secrets of the lush Reserve area with this sprawling estate. Nestled amidst verdant surroundings, this property stands as a beacon of luxury and tranquility. A paradise for those seeking a serene yet lavish lifestyle, it offers expansive spaces, top-notch amenities, and unmatched privacy. Revel in the beauty of nature while enjoying the comforts of a modern home in this exclusive estate.",
         address='Reserve Area, Estate 12',
         city='Norvinsk',
-        state='Southern Frontiers',
+        state='Test',
         country='TBD',
         zip_code='00000',
         price=1850000.00,
