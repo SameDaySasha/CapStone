@@ -1,5 +1,5 @@
 from datetime import datetime
-from .db import db, SCHEMA
+from .db import db, SCHEMA, add_prefix_for_prod
 from sqlalchemy import Enum
 import os
 
@@ -14,8 +14,8 @@ class Listing(db.Model):
     __table_args__ = {'schema': SCHEMA} if environment == "production" else None
 
     id = db.Column(db.Integer, primary_key=True)
-    created_by = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    last_updated_by = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    created_by = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    last_updated_by = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     title = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text, nullable=False)
     address = db.Column(db.String(255), nullable=False)
