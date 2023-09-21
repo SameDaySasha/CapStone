@@ -11,7 +11,8 @@ environment = os.getenv('ENVIRONMENT')
 
 class Listing(db.Model):
     __tablename__ = 'listings'
-    __table_args__ = {'schema': SCHEMA} if environment == "production" else None
+    if environment == "production" :
+        __table_args__  = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     created_by = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
