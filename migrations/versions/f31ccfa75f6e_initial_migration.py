@@ -9,7 +9,7 @@ from alembic import op
 import sqlalchemy as sa
 import os
 SCHEMA = os.environ.get('schema')
-
+environment = os.getenv('ENVIRONMENT')
 # revision identifiers, used by Alembic.
 revision = 'f31ccfa75f6e'
 down_revision = None
