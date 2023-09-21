@@ -1,14 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// homepage/get all listings page 
-export const fetchListings = createAsyncThunk('listings/fetchListings', async () => {
+export const fetchListings = createAsyncThunk('listings/fetchAll', async () => {
   const response = await fetch('/api/listings');
-  const data = await response.json();
-  return data;
+  return response.json();
 });
 
-// create listings route 
-export const createListing = createAsyncThunk('listings/createListing', async (newListingData) => {
+export const createListing = createAsyncThunk('listings/create', async (newListingData) => {
   const response = await fetch('/api/listings', {
     method: 'POST',
     headers: {
@@ -17,19 +14,15 @@ export const createListing = createAsyncThunk('listings/createListing', async (n
     body: JSON.stringify(newListingData),
     credentials: 'include',
   });
-  const data = await response.json();
-  return data;
+  return response.json();
 });
 
-// new thunk for fetching a single listing by ID
-export const fetchListingById = createAsyncThunk('listings/fetchListingById', async (id) => {
+export const fetchListingById = createAsyncThunk('listings/fetchById', async (id) => {
   const response = await fetch(`/api/listings/${id}`);
-  const data = await response.json();
-  return data;
+  return response.json();
 });
 
-// new thunk for updating a listing
-export const updateListing = createAsyncThunk('listings/updateListing', async ({ id, updatedData }) => {
+export const updateListing = createAsyncThunk('listings/update', async ({ id, updatedData }) => {
   const response = await fetch(`/api/listings/${id}`, {
     method: 'PUT',
     headers: {
@@ -38,12 +31,10 @@ export const updateListing = createAsyncThunk('listings/updateListing', async ({
     body: JSON.stringify(updatedData),
     credentials: 'include',
   });
-  const data = await response.json();
-  return data;
+  return response.json();
 });
 
-// new thunk for deleting a listing
-export const deleteListing = createAsyncThunk('listings/deleteListing', async (id) => {
+export const deleteListing = createAsyncThunk('listings/delete', async (id) => {
   const response = await fetch(`/api/listings/${id}`, {
     method: 'DELETE',
     headers: {
@@ -57,71 +48,39 @@ export const deleteListing = createAsyncThunk('listings/deleteListing', async (i
 const listingsSlice = createSlice({
   name: 'listings',
   initialState: {
-    listings: [],
-    currentListing: null,
-    status: 'idle',
-    error: null,
+    all: [],
+    current: null,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchListings.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(fetchListings.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.listings = action.payload;
-      })
-      .addCase(fetchListings.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message;
-      })
-      .addCase(fetchListingById.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(fetchListingById.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.currentListing = action.payload;
-      })
-      .addCase(fetchListingById.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message;
-      })
-      .addCase(updateListing.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(updateListing.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        const index = state.listings.findIndex(listing => listing.id === action.payload.id);
-        if (index !== -1) {
-          state.listings[index] = action.payload;
+      .addMatcher(
+        (action) => action.type.endsWith('/fulfilled'),
+        (state, action) => {
+          const { type, payload } = action;
+
+          if (type.startsWith('listings/fetchAll')) {
+            state.all = payload;
+          } else if (type.startsWith('listings/fetchById')) {
+            state.current = payload;
+          } else if (type.startsWith('listings/update')) {
+            const index = state.all.findIndex(listing => listing.id === payload.id);
+            if (index !== -1) {
+              state.all[index] = payload;
+            }
+            state.current = payload;
+          } else if (type.startsWith('listings/delete')) {
+            state.all = state.all.filter(listing => listing.id !== payload.id);
+            if (state.current && state.current.id === payload.id) {
+              state.current = null;
+            }
+          }
         }
-        state.currentListing = action.payload;
-      })
-      .addCase(updateListing.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message;
-      })
-      .addCase(deleteListing.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(deleteListing.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.listings = state.listings.filter(listing => listing.id !== action.payload.id);
-        if (state.currentListing && state.currentListing.id === action.payload.id) {
-          state.currentListing = null;
-        }
-      })
-      .addCase(deleteListing.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message;
-      });
+      );
   },
 });
 
 export default listingsSlice.reducer;
 
-export const selectAllListings = (state) => state.listings.listings;
-export const selectCurrentListing = (state) => state.listings.currentListing;
-export const selectStatus = (state) => state.listings.status;
-export const selectError = (state) => state.listings.error;
+export const selectAllListings = (state) => state.listings.all;
+export const selectCurrentListing = (state) => state.listings.current;
