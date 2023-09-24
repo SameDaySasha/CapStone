@@ -1,7 +1,6 @@
 from datetime import datetime
 from sqlalchemy import text  # Import for the SQL text function
-from app.models import db, Showing
-from app.db import environment, SCHEMA  # Import environment and SCHEMA variables
+from app.models import db, Showing, environment, SCHEMA 
 
 # Function to seed the Showings table
 def seed_showings():
