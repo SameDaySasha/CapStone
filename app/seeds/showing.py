@@ -1,6 +1,9 @@
 from datetime import datetime
+from sqlalchemy import text  # Import for the SQL text function
 from app.models import db, Showing
+from app.db import environment, SCHEMA  # Import environment and SCHEMA variables
 
+# Function to seed the Showings table
 def seed_showings():
     showing1 = Showing(
         created_by=4,
@@ -25,6 +28,11 @@ def seed_showings():
     # ... (add the other showing instances to the session)
     db.session.commit()
 
+# Function to undo the seeding for the Showings table
 def undo_showings():
-    db.session.execute('TRUNCATE showings RESTART IDENTITY CASCADE;')
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.showings RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM showings"))
+        
     db.session.commit()
