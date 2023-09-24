@@ -1,7 +1,7 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .listing import seed_listings, undo_listings  # Import listings seed functions
-from .showings import seed_showings, undo_showings
+from .showing import seed_showings, undo_showings
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
