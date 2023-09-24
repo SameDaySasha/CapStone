@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteShowing, fetchAllShowingsForListing } from '../../store/showings'; // Adjust import path
+import { selectUser } from '../../store/session'; // Adjust the import path as necessary
 
 function DeleteShowingButton({ listingId, showingId }) {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
+  const sessionUser = useSelector(selectUser); // Get the current user
 
   const handleDelete = async () => {
     await dispatch(deleteShowing({ listingId, showingId }));
@@ -12,18 +14,22 @@ function DeleteShowingButton({ listingId, showingId }) {
     setShowModal(false); // Close the modal
   };
 
-  return (
-    <div>
-      <button onClick={() => setShowModal(true)}>Delete</button>
-      {showModal && (
-        <div className="delete-modal">
-          <p>Are you sure? Please confirm.</p>
-          <button onClick={handleDelete}>Yes</button>
-          <button onClick={() => setShowModal(false)}>No</button>
-        </div>
-      )}
-    </div>
-  );
+  if (sessionUser && sessionUser.role === 'manager') {
+    return (
+      <div>
+        <button onClick={() => setShowModal(true)}>Delete</button>
+        {showModal && (
+          <div className="delete-modal">
+            <p>Are you sure? Please confirm.</p>
+            <button onClick={handleDelete}>Yes</button>
+            <button onClick={() => setShowModal(false)}>No</button>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return null;
 }
 
 export default DeleteShowingButton;
