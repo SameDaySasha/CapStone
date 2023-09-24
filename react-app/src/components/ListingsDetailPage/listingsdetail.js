@@ -5,6 +5,9 @@ import { fetchListingById, selectCurrentListing } from '../../store/listings'; /
 import './ListingDetailPage.css'; // Import the CSS
 import EditButton from '../editfunction/editbutton'; // Import the EditButton component
 import DeleteButton from '../DeleteFunction/deleteListingButton'; // Import the DeleteButton component
+import ShowingDisplay from '../showings/ShowingDisplay';
+
+
 
 function ListingDetailPage() {
   const { id } = useParams();
@@ -28,6 +31,7 @@ function ListingDetailPage() {
           {currentListing.title} 
           <EditButton listingId={id} /> {/* Render the EditButton here, passing the listingId as a prop */}
           <DeleteButton listingId={id} /> {/* Render the DeleteButton here, passing the listingId as a prop */}
+          <ShowingDisplay listingId={id} />
         </h1>
       </div>
       <div className="detail-item">
