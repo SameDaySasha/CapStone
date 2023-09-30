@@ -21,8 +21,12 @@ function ShowingDisplay() {
     const currentTime = new Date();
     const showingStartTime = new Date(showingTime);
     const showingEndTime = new Date(showingTime);
-    showingEndTime.setHours(showingEndTime.getHours() + 4); // 4 hours after the start time
-
+    showingStartTime.setHours(showingStartTime.getHours() + 4);
+    showingEndTime.setHours(showingEndTime.getHours() + 8); // 4 hours after the start time
+    console.log(currentTime)
+    console.log(showingStartTime)
+    console.log(showingEndTime)
+    console.log("showing time: " + showingTime)
     if (currentTime < showingStartTime) {
       return "Scheduled";
     } else if (currentTime >= showingStartTime && currentTime <= showingEndTime) {
