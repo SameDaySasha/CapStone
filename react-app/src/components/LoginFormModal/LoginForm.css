@@ -1,0 +1,77 @@
+/* General styling for the form */
+.tarkov-form {
+    background-color: #333;
+    border: 2px solid #444;
+    border-radius: 5px;
+    color: #ddd;
+    font-family: monospace;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  }
+  
+  /* Title styling */
+  .tarkov-title {
+    color: #ddd;
+    font-family: monospace;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Error list styling */
+  .tarkov-form__errors {
+    background-color: #444;
+    border: 1px solid #555;
+    color: #ff5555;
+    padding: 10px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+  }
+  
+  .tarkov-form__error-item {
+    margin: 5px 0;
+  }
+  
+  /* Label and input styling */
+  .tarkov-form__label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .tarkov-form__input {
+    background-color: #444;
+    border: 1px solid #555;
+    border-radius: 3px;
+    color: #ddd;
+    padding: 10px;
+    width: 93%;
+  }
+  
+  /* Button styling */
+  .tarkov-form__button,
+  .tarkov-form__button--demo,
+  .tarkov-form__button--admin {
+    background-color: #444;
+    border: 1px solid #555;
+    border-radius: 3px;
+    color: #ddd;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 5px;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
+  
+  .tarkov-form__button:hover,
+  .tarkov-form__button--demo:hover,
+  .tarkov-form__button--admin:hover {
+    background-color: #555;
+    color: #00ff00; /* Neon green for that night-vision glow */
+  }
+  
+  /* Special styling for demo and admin buttons */
+  .tarkov-form__button--demo {
+    background-color: #0066ff;
+  }
+  
+  .tarkov-form__button--admin {
+    background-color: #ff6600;
+  }

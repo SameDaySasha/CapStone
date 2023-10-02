@@ -1,0 +1,90 @@
+/* General styling for the form */
+.signup-tarkov-form {
+  background-color: #333;
+  border: 2px solid #444;
+  border-radius: 5px;
+  color: #ddd;
+  font-family: monospace;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+
+/* Label and input styling */
+.signup-tarkov-form__label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.signup-tarkov-form__input {
+  background-color: #444;
+  border: 1px solid #555;
+  border-radius: 3px;
+  color: #ddd;
+  padding: 10px;
+  width: calc(100% - 22px); /* 100% width minus the sum of padding and border */
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+/* General styling for the form */
+.signup-tarkov-form {
+  background-color: #333;
+  border: 2px solid #444;
+  border-radius: 5px;
+  color: #ddd;
+  font-family: monospace;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+
+/* Label and input styling */
+.signup-tarkov-form__label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.signup-tarkov-form__input {
+  background-color: #444;
+  border: 1px solid #555;
+  border-radius: 3px;
+  color: #ddd;
+  padding: 10px;
+  width: calc(100% - 22px); /* 100% width minus the sum of padding and border */
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+
+/* Button styling */
+.signup-tarkov-form__button {
+    background-color: #444;
+    border: 1px solid #555;
+    border-radius: 3px;
+    color: #ddd;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 5px;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
+  
+  .signup-tarkov-form__button:hover {
+    background-color: #555;
+    color: #00ff00; /* Neon green for that night-vision glow */
+  }
+  
+  /* Center the Sign Up button */
+.signup-tarkov-form__button {
+    display: block;
+    margin: auto;
+  }
+  
+  /* Center the Sign Up title */
+.signup-tarkov-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Center the Sign Up button */
+  .signup-tarkov-form__button {
+    display: block;
+    margin: auto;
+  }
+  
