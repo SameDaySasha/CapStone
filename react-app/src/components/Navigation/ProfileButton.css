@@ -1,0 +1,71 @@
+/* Container */
+.profile-container {
+    position: relative;
+    top: 0;
+    right: 0;
+    z-index: 10;
+  }
+  
+/* Burger button */
+.burger-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Lines in the burger icon */
+.burger-line {
+  width: 25px;
+  height: 3px;
+  background: rgb(250, 248, 248);
+  margin: 2px 0;
+}
+
+/* Dropdown */
+.profile-dropdown {
+  display: block;
+  position: relative;
+  top: 40px;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  width: 200px;
+  z-index: 11;
+}
+
+.profile-dropdown.hidden {
+  display: none;
+}
+
+/* List items */
+.profile-username,
+.profile-email,
+.profile-logout {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.profile-logout button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* New styling for login and signup buttons */
+.login-btn-container button,
+.signup-btn-container button {
+  background-color: #444;
+  border: 1px solid #555;
+  border-radius: 3px;
+  color: #ddd;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin: 5px;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.login-btn-container button:hover,
+.signup-btn-container button:hover {
+  background-color: #555;
+  color: #00ff00;
+}

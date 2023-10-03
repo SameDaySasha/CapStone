@@ -54,14 +54,14 @@ function EditListingForm() {
 
     try {
       const response = await dispatch(updateListing({ id, updatedData }));
-      if (response.type === "listings/updateListing/fulfilled") {
-        history.push(`/listings/${id}`);
+      if (response.type === "listings/update/fulfilled") {
+        history.push(`/listings/${id}`); // Redirect to the edited listing page
       } else {
         console.error('Listing update not fulfilled:', response);
       }
     } catch (error) {
       console.error('Error updating listing:', error);
-    }
+    }    
   };
 
   return (

@@ -9,7 +9,7 @@ import Navigation from "./components/Navigation";
 import ListingsPage from "./components/homepage/homepage"; 
 import ListingDetailPage from "./components/ListingsDetailPage/listingsdetail"; 
 import EditListingForm from "./components/editfunction/EditListingForm.js";
-
+import Banner from "./components/homepage/banner.js"; // Import the Banner component. Adjust the path as needed.
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +21,7 @@ function App() {
 
   return (
     <>
+      <Banner />  {/* The Banner component */}
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
