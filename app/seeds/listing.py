@@ -103,7 +103,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=2100000.00,
-        main_image='path/to/shoreline_mansion_image.jpg',
+        main_image='https://previews.agefotostock.com/previewimage/medibigoff/a0061cf71d201114e28468d2907f3793/s57-637124.jpg',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -118,7 +118,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=675000.00,
-        main_image='path/to/customs_cottage_image.jpg',
+        main_image='https://preview.redd.it/bckfafk7tai91.jpg?vthumb=1&s=3195494b3befffb40e95bfeb2f84b992f1c1d538',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -133,7 +133,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=2950000.00,
-        main_image='path/to/interchange_penthouse_image.jpg',
+        main_image='https://forum.escapefromtarkov.com/uploads/monthly_2018_01/eft_interchange_wip11.thumb.jpg.3c1925308a5b8fa7dff1e026c5aca204.jpg',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -178,7 +178,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=870000.00,
-        main_image='path/to/factory_loft_image.jpg',
+        main_image='https://www.escapistmagazine.com/wp-content/uploads/2023/06/Escape-From-Tarkov-Cellar-Stairway.png?fit=1920%2C1080',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -209,7 +209,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=1850000.00,
-        main_image='path/to/reserve_estate_image.jpg',
+        main_image='https://external-preview.redd.it/0tGVqgV7s3t4Z0kaFBaMdRRRWa4AqYNWerbZAI3NMEI.png?format=pjpg&auto=webp&s=0564b1447aca8d35cf05f5c6df6e8252602a3e98',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -225,7 +225,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=670000.00,
-        main_image='path/to/customs_hideaway_image.jpg',
+        main_image='https://www.gamersdecide.com/sites/default/files/authors/u164951/220_room.jpg',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -241,7 +241,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=890000.00,
-        main_image='path/to/interchange_loft_image.jpg',
+        main_image='https://preview.redd.it/vljxehou5j551.jpg?width=716&format=pjpg&auto=webp&s=4ec293d77e0d0935e18c557e06c527b17fe271dc',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -257,7 +257,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=750000.00,
-        main_image='path/to/woods_cabin_image.jpg',
+        main_image='https://cdna.artstation.com/p/assets/images/images/038/575/560/large/andrey-gubin-house-10.jpg?1623452337',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -272,7 +272,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=1230000.00,
-        main_image='path/to/shoreline_lakeside_image.jpg',
+        main_image='https://cdnb.artstation.com/p/assets/images/images/038/575/585/large/andrey-gubin-house-02.jpg?1623452405',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -288,7 +288,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=2370000.00,
-        main_image='path/to/lab_villa_image.jpg',
+        main_image='https://insider-gaming.com/wp-content/uploads/2023/07/the-lab-tarkov.jpg',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -304,7 +304,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=1050000.00,
-        main_image='path/to/factory_mountain_home_image.jpg',
+        main_image='https://c8.alamy.com/zooms/9/efe72f02549046dc965574b5c7de1faa/rb3dfx.jpg',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
