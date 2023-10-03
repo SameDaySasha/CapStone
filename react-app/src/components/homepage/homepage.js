@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchListings, selectAllListings } from '../../store/listings';
+import { fetchListings, selectAllListings } from '../../store/listings'; 
 import { selectUser } from '../../store/session'; // Adjust the path to your session slice
-import './devstyles.css';
+import './devstyles.css'
 
 function ListingsPage() {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ function ListingsPage() {
 
   return (
     <div className="listingCard">
-      {listings.map((listing) => (
+      {listings.map(listing => (
         <Link to={`/listings/${listing.id}`} key={listing.id} className="listing-link">
           <div className="item">
             <div className="image-container">

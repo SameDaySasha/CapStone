@@ -20,6 +20,7 @@
   .detail-item img {
     width: 100%; /* To make image responsive */
     border-radius: 10px;
+    object-fit: cover;
   }
   
   .detail-item-title {

@@ -23,15 +23,14 @@
   border-radius: 10px;
   overflow: hidden;
   max-width: 100%; /* Allow it to take up the full width of the item */
-  max-height: 50%;  /* Set max height to 50% to allow it to take up half the height of the item */
+  max-height: 200px;  /* Set max height to 50% to allow it to take up half the height of the item */
   margin: 0 auto; /* Centering the image container */
 }
 
 .item-preview {
   width: 100%; 
-  height: auto; 
   display: block;
-  max-height: 100%; /* Ensuring image doesn't exceed container height */
+  max-height: 50%; /* Ensuring image doesn't exceed container height */
 }
 
 .price {

@@ -52,7 +52,7 @@ function ProfileButton({ user }) {
             <li className="profile-username">{user.username}</li>
             <li className="profile-email">{user.email}</li>
             
-            {/* Added your "Create a New Listing" button here */}
+          
             {user.role === 'manager' && (
               <li className="profile-create-listing">
                 <Link to="/create-listing">
