@@ -13,7 +13,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=750000.00,
-        main_image='path/to/subtle_tarkov_image.jpg',
+        main_image='https://cdn.sanity.io/images/ccckgjf9/production/999b7e51a7be1236892d7f3c4e54c8e51b87b4ce-1250x703.jpg?max-h=1080&max-w=1920&fit=scale&auto=format',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -28,7 +28,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=950000.00,
-        main_image='path/to/woods_cabin_image.jpg',
+        main_image='https://d2b7iykwz672en.cloudfront.net/multimedia/20.jpg',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -43,7 +43,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=1150000.00,
-        main_image='path/to/shoreline_villa_image.jpg',
+        main_image='https://preview.redd.it/fmowff3v2sb51.png?width=2560&format=png&auto=webp&s=eee748b82e882b1e3099595870c2dbbe1eca95d8',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -58,7 +58,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=2000000.00,
-        main_image='path/to/customs_penthouse_image.jpg',
+        main_image='https://d1fs8ljxwyzba6.cloudfront.net/assets/editorial/2022/01/escape-from-tarkov-customs-extraction-points.jpg',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -73,7 +73,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=1750000.00,
-        main_image='path/to/reserve_mansion_image.jpg',
+        main_image='https://cdnb.artstation.com/p/assets/images/images/028/280/453/large/anton-petrov-eft-screen-001.jpg?1594029268',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -88,7 +88,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=600000.00,
-        main_image='path/to/factory_home_image.jpg',
+        main_image='https://images.squarespace-cdn.com/content/v1/535f11e5e4b0a4907f978c3a/1600819306239-4GWAFPSVJLIOS41YBIB3/andrew-gubin-5.jpg',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -148,7 +148,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=825000.00,
-        main_image='path/to/lighthouse_farmhouse_image.jpg',
+        main_image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROlPauCdlfLk6UDHK1R8qagVYDp313hasSYw&usqp=CAU',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -163,7 +163,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=1230000.00,
-        main_image='path/to/reserve_retreat_image.jpg',
+        main_image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqpF7kh1OeNuSFtMRigjjK0_6cdTQ21Djdfw&usqp=CAU',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -194,7 +194,7 @@ def seed_listings():
         country='TBD',
         zip_code='00000',
         price=1250000.00,
-        main_image='path/to/shoreline_residence_image.jpg',
+        main_image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGvbZLig9JCvK5-WWRmwLwOBUM5s3QkSglRg&usqp=CAU',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
