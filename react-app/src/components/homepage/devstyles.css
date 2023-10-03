@@ -1,6 +1,6 @@
 .listingCard {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Adjusted to have 3 items per row */
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
 
@@ -18,24 +18,31 @@
   overflow: hidden;
 }
 
+.item-title {
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;  /* Make the title bold */
+  font-size: larger;  /* Make the title one size larger */
+}
+
 .image-container {
   border: 2px solid orange;
   border-radius: 10px;
   overflow: hidden;
-  max-width: 100%; /* Allow it to take up the full width of the item */
-  max-height: 200px;  /* Set max height to 50% to allow it to take up half the height of the item */
-  margin: 0 auto; /* Centering the image container */
+  max-width: 100%;
+  max-height: 200px;
+  margin: 0 auto;
 }
 
 .item-preview {
-  width: 100%; 
+  width: 100%;
   display: block;
-  max-height: 50%; /* Ensuring image doesn't exceed container height */
+  max-height: 50%;
 }
 
-.price {
-  text-align: center; 
-  margin: 5px 0;
+.item-price {
+  text-align: center;
+  margin: 10px 0;
 }
 
 .item-details {
