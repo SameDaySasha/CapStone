@@ -1,34 +1,55 @@
+/* ListingDetailPage.css */
+
+
+
 .detail-container {
-    border: 2px solid limegreen;
-    background-color: rgba(0, 255, 0, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .detail-item {
-    border: 2px solid orange;
-    background-color: rgba(255, 165, 0, 0.1);
-    padding: 10px;
-    border-radius: 10px;
-    margin: 10px;
-    width: 80%; /* You can adjust the width as per your preference */
-  }
-  
-  .detail-item img {
-    width: 100%; /* To make image responsive */
-    border-radius: 10px;
-    object-fit: cover;
-  }
-  
-  .detail-item-title {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .detail-item-desc {
-    font-size: 18px;
-  }
-  
+  border: 2px solid limegreen;
+  background-color: rgba(0, 0, 0, 0.7); /* Black background with slight opacity */
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  margin: auto;
+  box-shadow: 0 0 20px limegreen; /* Green glow to mimic night vision */
+}
+
+.detail-item {
+  border: 2px solid #4a4945; /* Dark brown */
+  background-color: rgba(255, 165, 0, 0.1);
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+  width: 80%;
+}
+
+.detail-item-title h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #FFFFFF; /* White */
+  text-align: center;
+}
+
+.control-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.latest-bid {
+  color: limegreen;
+  font-size: 18px;
+}
+
+.detail-item img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.detail-item-desc,
+.address p,
+.metadata p {
+  font-size: 18px;
+  color: #FFFFFF; /* White */
+}

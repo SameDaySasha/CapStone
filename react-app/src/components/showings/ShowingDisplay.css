@@ -1,26 +1,39 @@
-/* ShowingDisplay.css */
+/* General styling for the ShowingDisplay component */
+.tarkov-showing-display {
+  background-color: #333;
+  color: #ddd;
+  font-family: monospace;
+  border: 2px solid #444;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
 
-.showing-display-container {
-    border: 2px solid blue;
-    background-color: rgba(0, 0, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .showings-list-container {
-    border: 2px solid red;
-    background-color: rgba(255, 0, 0, 0.1);
-    padding: 10px;
-    border-radius: 10px;
-    margin: 10px;
-    width: 80%; /* You can adjust the width as per your preference */
-  }
-  
-  .showing-item {
-    font-size: 18px;
-    margin-bottom: 5px;
-  }
-  
+/* Title styling */
+.tarkov-title {
+  color: #ddd;
+  font-family: monospace;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Styling for the showings list container */
+.tarkov-showings-list {
+  background-color: #444;
+  border: 1px solid #555;
+  border-radius: 3px;
+  color: #ddd;
+  padding: 10px;
+}
+
+/* Styling for individual showing items */
+.tarkov-showing-item {
+  margin: 10px;
+  border-bottom: 1px solid #555;
+  padding-bottom: 5px;
+}
+
+/* Styling for 'no available showings' message */
+.tarkov-no-showings {
+  color: #ff5555;
+}

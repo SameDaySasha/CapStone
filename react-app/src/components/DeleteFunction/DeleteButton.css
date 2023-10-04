@@ -1,0 +1,16 @@
+.tarkov-form__button--delete {
+    background-color: #ff0000;  /* Red background */
+    border: 1px solid #555;
+    border-radius: 3px;
+    color: #ddd;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 5px;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
+  
+  .tarkov-form__button--delete:hover {
+    background-color: #ff1111;  /* Slightly lighter red for hover */
+    color: #00ff00;  /* Neon green text, for consistency */
+  }
+  

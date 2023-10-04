@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editShowing, fetchShowingDetails, selectCurrentShowing } from '../../store/showings'; // Adjust the import path
+import './EditShowingForm.css';  // Add this import line for CSS
 
 function EditShowingForm({ listingId, showingId }) {
   const dispatch = useDispatch();
@@ -24,7 +25,6 @@ function EditShowingForm({ listingId, showingId }) {
   
     const updatedData = {
       time: dateTime,
-      // Add other fields here if needed
     };
   
     try {
@@ -40,22 +40,22 @@ function EditShowingForm({ listingId, showingId }) {
   };
   
   return (
-    <div className="showingForm-container">
-      <form onSubmit={handleSubmit} className="showingForm-form">
-        <div className="showingForm-item">
-          <label className="showingForm-label">
+    <div className="tarkov-form-container">
+      <form onSubmit={handleSubmit} className="tarkov-form">
+        <div className="tarkov-form-item">
+          <label className="tarkov-form-label">
             Select Date and Time:
             <input 
               type="datetime-local" 
               value={dateTime} 
               onChange={(e) => setDateTime(e.target.value)} 
               required 
-              className="showingForm-input" 
+              className="tarkov-form-input" 
             />
           </label>
         </div>
-        <div className="showingForm-item">
-          <button type="submit" className="showingForm-button">Update Showing</button>
+        <div className="tarkov-form-item">
+          <button type="submit" className="tarkov-form-button">Update Showing</button>
         </div>
       </form>
     </div>

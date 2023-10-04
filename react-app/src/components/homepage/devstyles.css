@@ -1,3 +1,12 @@
+/* devstyles.css */
+
+body {
+  background-color: #4a4945; /* Sad brown */
+  /* background-color: #696969;  Sad gray */
+  margin: 0;
+  padding: 0;
+}
+
 .listingCard {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -10,23 +19,25 @@
 }
 
 .item {
-  border: 2px solid black;
-  background-color: rgba(0, 255, 0, 0.1);
+  border: 2px solid limegreen;  /* Matching the green from detail page */
+  background-color: rgba(0, 0, 0, 0.7);  /* Black background with slight opacity */
   padding: 10px;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 0 10px limegreen;  /* Green glow to mimic night vision */
 }
 
 .item-title {
   text-align: center;
   margin-bottom: 10px;
-  font-weight: bold;  /* Make the title bold */
-  font-size: larger;  /* Make the title one size larger */
+  font-weight: bold;  
+  font-size: larger;
+  color: #FFFFFF;  /* White */
 }
 
 .image-container {
-  border: 2px solid orange;
+  border: 2px solid #4a4945;  /* Dark brown */
   border-radius: 10px;
   overflow: hidden;
   max-width: 100%;
@@ -43,6 +54,7 @@
 .item-price {
   text-align: center;
   margin: 10px 0;
+  color: limegreen;  /* Green to match the theme */
 }
 
 .item-details {
@@ -53,6 +65,7 @@
   border-radius: 5px;
   padding: 5px;
   visibility: hidden;
+  color: #FFFFFF;  /* White */
 }
 
 .item:hover .item-details {

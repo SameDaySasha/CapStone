@@ -1,0 +1,16 @@
+.tarkov-form__button--edit {
+    background-color: #ff6600;  /* Copied from your admin button */
+    border: 1px solid #555;
+    border-radius: 3px;
+    color: #ddd;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 5px;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
+  
+  .tarkov-form__button--edit:hover {
+    background-color: #ff7700;  /* Slightly lighter shade for hover */
+    color: #00ff00;  /* Neon green, consistent with your other buttons */
+  }
+  
