@@ -33,7 +33,8 @@ body {
   margin-bottom: 10px;
   font-weight: bold;  
   font-size: larger;
-  color: #FFFFFF;  /* White */
+  color: #FFFFFF; 
+  height: 40px; 
 }
 
 .image-container {
