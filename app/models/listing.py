@@ -27,7 +27,7 @@ class Listing(db.Model):
     main_image = db.Column(db.String(255), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
-
+    showings = db.relationship('Showing', backref='listing', lazy=True, cascade='all, delete-orphan')
     def to_dict(self):
         return {
             'id': self.id,
