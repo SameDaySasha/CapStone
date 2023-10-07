@@ -64,18 +64,13 @@
   }
   
   /* Error Message */
-  .error-message {
+  .listingForm-error {
     border: 2px solid red;
     background-color: rgba(255, 0, 0, 0.5); /* Red background */
     padding: 10px;
     border-radius: 10px;
     color: #FFFFFF; /* White text */
     margin-top: 10px;
-    display: none; /* Initially hidden */
-  }
-  
-  /* Show error message when needed */
-  .show-error .error-message {
-    display: block;
+    display: block; /* Initially visible */
   }
   

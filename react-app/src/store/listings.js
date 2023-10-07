@@ -5,27 +5,16 @@ export const fetchListings = createAsyncThunk('listings/fetchAll', async () => {
   return response.json();
 });
 
-export const createListing = createAsyncThunk('listings/create', async (newListingData, { rejectWithValue }) => {
-  try {
-    const response = await fetch('/api/listings', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newListingData),
-      credentials: 'include',
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      return data;
-    } else {
-      return rejectWithValue(data);
-    }
-  } catch (error) {
-    return rejectWithValue(error.message);
-  }
+export const createListing = createAsyncThunk('listings/create', async (newListingData) => {
+  const response = await fetch('/api/listings', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newListingData),
+    credentials: 'include',
+  });
+  return response.json();
 });
 
 export const fetchListingById = createAsyncThunk('listings/fetchById', async (id) => {

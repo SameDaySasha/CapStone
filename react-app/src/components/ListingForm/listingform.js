@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createListing, fetchListingById } from '../../store/listings'; // Adjust the import path to point to your listings slice
-import './listingform.css'
+import { createListing, fetchListingById } from '../../store/listings';
+// import './listingform.css';
+
 function ListingForm() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -15,10 +16,11 @@ function ListingForm() {
   const [zipCode, setZipCode] = useState('');
   const [price, setPrice] = useState('');
   const [mainImage, setMainImage] = useState('');
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const newListingData = {
       title,
       description,
@@ -30,22 +32,21 @@ function ListingForm() {
       price,
       main_image: mainImage,
     };
-  
+
     try {
       const response = await dispatch(createListing(newListingData));
-      
-      if (response.type === "listings/createListing/fulfilled") {
+
+      if (response.type === "listings/create/fulfilled") {
         if (response.payload && response.payload.id) {
-          const newListingId = response.payload.id; 
+          const newListingId = response.payload.id;
           await dispatch(fetchListingById(newListingId));
-          history.push(`/listings/${newListingId}`); 
+          history.push(`/listings/${newListingId}`);
         } else {
-          console.error('Unexpected payload structure:', response.payload);
+          console.error('RESPONSE.PAYLOAD.ERRORS: ', response.payload.errors)
+          setErrors(response.payload.errors);
         }
-      } else if (response.type === "listings/createListing/rejected") {
-        // Handle server-side validation errors here
-        console.error('Server-side validation failed:', response.error);
-        // You can show these errors to the user
+      } else if (response.type === "listings/create/rejected") {
+        setErrors(response.error);
       } else {
         console.error('Listing creation not fulfilled:', response);
       }
@@ -53,59 +54,67 @@ function ListingForm() {
       console.error('Error creating new listing:', error);
     }
   };
-  
-  
+
   return (
     <div className="listingForm-container">
       <form onSubmit={handleSubmit} className="listingForm-form">
+        {errors.title && <div className="listingForm-error">{errors.title[0]}</div>}
         <div className="listingForm-item">
           <label className="listingForm-label">
             Title:
             <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required className="listingForm-input" />
           </label>
         </div>
+        {errors.description && <div className="listingForm-error">{errors.description[0]}</div>}
         <div className="listingForm-item">
           <label className="listingForm-label">
             Description:
             <textarea value={description} onChange={(e) => setDescription(e.target.value)} required className="listingForm-textarea" />
           </label>
         </div>
+        {errors.address && <div className="listingForm-error">{errors.address[0]}</div>}
         <div className="listingForm-item">
           <label className="listingForm-label">
             Address:
             <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} required className="listingForm-input" />
           </label>
         </div>
+        {errors.city && <div className="listingForm-error">{errors.city[0]}</div>}
         <div className="listingForm-item">
           <label className="listingForm-label">
             City:
             <input type="text" value={city} onChange={(e) => setCity(e.target.value)} required className="listingForm-input" />
           </label>
         </div>
+        {errors.state && <div className="listingForm-error">{errors.state[0]}</div>}
         <div className="listingForm-item">
           <label className="listingForm-label">
             State:
             <input type="text" value={state} onChange={(e) => setState(e.target.value)} required className="listingForm-input" />
           </label>
         </div>
+        {errors.country && <div className="listingForm-error">{errors.country[0]}</div>}
         <div className="listingForm-item">
           <label className="listingForm-label">
             Country:
             <input type="text" value={country} onChange={(e) => setCountry(e.target.value)} required className="listingForm-input" />
           </label>
         </div>
+        {errors.zipCode && <div className="listingForm-error">{errors.zipCode[0]}</div>}
         <div className="listingForm-item">
           <label className="listingForm-label">
             Zip Code:
             <input type="text" value={zipCode} onChange={(e) => setZipCode(e.target.value)} required className="listingForm-input" />
           </label>
         </div>
+        {errors.price && <div className="listingForm-error">{errors.price[0]}</div>}
         <div className="listingForm-item">
           <label className="listingForm-label">
             Price:
             <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} required className="listingForm-input" />
           </label>
         </div>
+        {errors.mainImage && <div className="listingForm-error">{errors.mainImage[0]}</div>}
         <div className="listingForm-item">
           <label className="listingForm-label">
             Main Image URL:
@@ -117,7 +126,7 @@ function ListingForm() {
         </div>
       </form>
     </div>
-  );  
+  );
 }
 
 export default ListingForm;
