@@ -27,8 +27,7 @@ const CreateShowingButton = ({ listingId }) => {
               <span className="create-close-button" onClick={() => setShowModal(false)}>&times;</span>
               <ShowingForm 
                 listingId={listingId} 
-                onSubmit={handleCreateShowing} 
-                onClose={() => setShowModal(false)}
+                setShowModal={setShowModal}  
               />
             </div>
           </div>

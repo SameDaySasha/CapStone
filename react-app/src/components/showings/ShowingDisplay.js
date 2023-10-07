@@ -5,7 +5,7 @@ import { fetchAllShowingsForListing, selectAllShowings } from '../../store/showi
 import EditShowingButton from './EditShowingButton';
 import CreateShowingButton from './CreateShowingButton';
 import DeleteShowingButton from './DeleteShowingButton';
-import './ShowingDisplay.css'; // Make sure this file is in the same directory as your component or update the path accordingly
+import './ShowingDisplay.css';
 
 function ShowingDisplay() {
   const { id: listingId } = useParams();
@@ -18,29 +18,27 @@ function ShowingDisplay() {
 
   const getShowingStatus = (showingTime) => {
     const currentTime = new Date();
-    const showingStartTime = new Date(showingTime);
-    const showingEndTime = new Date(showingTime);
-    showingStartTime.setHours(showingStartTime.getHours() + 4);
-    showingEndTime.setHours(showingEndTime.getHours() + 8);
-    if (currentTime < showingStartTime) {
+    const showingTimeDate = new Date(showingTime);
+    if (currentTime < showingTimeDate) {
       return "Scheduled";
-    } else if (currentTime >= showingStartTime && currentTime <= showingEndTime) {
-      return `Open! Ends at ${showingEndTime.toLocaleTimeString()}`;
     } else {
       return "Closed";
     }
   };
+
+  // Sort the showings by time
+  const sortedShowings = [...allShowings].sort((a, b) => new Date(a.time) - new Date(b.time));
 
   return (
     <div className="tarkov-showing-display">
       <h2 className="tarkov-title">Available Showings</h2>
       <CreateShowingButton listingId={listingId} />
       <div className="tarkov-showings-list">
-        {allShowings.length ? (
-          allShowings.map((showing, index) => (
+        {sortedShowings.length ? (
+          sortedShowings.map((showing, index) => (
             <div key={index} className="tarkov-showing-item">
               <p>
-                {new Date(showing.time).toLocaleDateString()} - {getShowingStatus(showing.time)}
+                {new Date(showing.time).toLocaleDateString()} at {new Date(showing.time).toLocaleTimeString()} - {getShowingStatus(showing.time)}
               </p>
               <EditShowingButton listingId={listingId} showingId={showing.id} />
               <DeleteShowingButton listingId={listingId} showingId={showing.id} />

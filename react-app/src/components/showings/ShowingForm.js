@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createShowing } from '../../store/showings'; // Adjust the import path to point to your showings slice
-import './ShowingForm.css'; // Add this import line for CSS
+import { createShowing } from '../../store/showings';
+import './ShowingForm.css';
 
-function ShowingForm({ listingId }) {
+function ShowingForm({ listingId, setShowModal }) {  // Receive setShowModal as a prop
   const dispatch = useDispatch();
   const history = useHistory();
   const [dateTime, setDateTime] = useState('');
@@ -19,14 +19,9 @@ function ShowingForm({ listingId }) {
 
     try {
       const response = await dispatch(createShowing({ listingId, newShowingData }));
-      if (response.type === "showings/createShowing/fulfilled") {
-        if (response.payload && response.payload.id) {
-          const newShowingId = response.payload.id;
-          history.push(`/showings/${newShowingId}`);
-          window.location.reload(); 
-        } else {
-          console.error('Unexpected payload structure:', response.payload);
-        }
+      if (response.type === "showings/create/fulfilled") {
+        setShowModal(false);  // Close the modal using passed setShowModal
+        history.push(`/listings/${listingId}`);
       } else {
         console.error('Showing creation not fulfilled:', response);
       }
