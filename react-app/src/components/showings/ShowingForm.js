@@ -4,10 +4,14 @@ import { useHistory } from 'react-router-dom';
 import { createShowing } from '../../store/showings';
 import './ShowingForm.css';
 
-function ShowingForm({ listingId, setShowModal }) {  // Receive setShowModal as a prop
+function ShowingForm({ listingId, setShowModal }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [dateTime, setDateTime] = useState('');
+
+  const closeModal = () => {
+    setShowModal(false); // Close the modal
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +24,7 @@ function ShowingForm({ listingId, setShowModal }) {  // Receive setShowModal as 
     try {
       const response = await dispatch(createShowing({ listingId, newShowingData }));
       if (response.type === "showings/create/fulfilled") {
-        setShowModal(false);  // Close the modal using passed setShowModal
+        closeModal();  // Close the modal using closeModal function
         history.push(`/listings/${listingId}`);
       } else {
         console.error('Showing creation not fulfilled:', response);
