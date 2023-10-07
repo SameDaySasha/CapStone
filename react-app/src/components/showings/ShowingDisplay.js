@@ -26,8 +26,8 @@ function ShowingDisplay() {
     }
   };
 
-  // Sort the showings by time
-  const sortedShowings = [...allShowings].sort((a, b) => new Date(a.time) - new Date(b.time));
+  // Check if allShowings is an array and sort it by time
+  const sortedShowings = Array.isArray(allShowings) ? [...allShowings].sort((a, b) => new Date(a.time) - new Date(b.time)) : [];
 
   return (
     <div className="tarkov-showing-display">
