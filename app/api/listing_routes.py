@@ -79,9 +79,10 @@ def get_listing_by_id(id):
 def create_listing():
     if current_user.role != 'manager':
         return jsonify({"error": "Access forbidden: Insufficient permissions"}), 403
-    form = CreateListingForm()
+
+    form = CreateListingForm(data=request.json)
     form['csrf_token'].data = request.cookies['csrf_token']
-    
+
     if form.validate_on_submit():
         new_listing = Listing(
             created_by=current_user.id,
@@ -96,7 +97,7 @@ def create_listing():
             price=form.data['price'],
             main_image=form.data['main_image'],
         )
-        
+
         db.session.add(new_listing)
         db.session.commit()
 
@@ -104,8 +105,6 @@ def create_listing():
     else:
         return jsonify({'errors': form.errors}), 400
 
-
-# Update listing route
 @listing_routes.route('/listings/<int:id>', methods=['PUT'])
 @login_required
 def update_listing(id):
@@ -117,52 +116,44 @@ def update_listing(id):
     if not listing:
         return jsonify({"errors": {"detail": "Listing not found"}}), 404
 
-    # Get the updated data from the request
-    data = request.get_json()
+    # Populate form with existing data
+    form = CreateListingForm(data=request.get_json())
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-    # Validate the data (this is a simple validation, you might want to add more checks)
-    errors = {}
-    if 'title' in data and not data['title']:
-        errors['title'] = ["Title can't be blank"]
-    if 'price' in data and int(float(data['price'])) <= 0:
-        errors['price'] = ["Price must be a positive number"]
+    if form.validate_on_submit():
+        # Update the listing details
+        listing.title = form.data.get('title', listing.title)
+        listing.description = form.data.get('description', listing.description)
+        listing.address = form.data.get('address', listing.address)
+        listing.city = form.data.get('city', listing.city)
+        listing.state = form.data.get('state', listing.state)
+        listing.country = form.data.get('country', listing.country)
+        listing.zip_code = form.data.get('zip_code', listing.zip_code)
+        listing.price = form.data.get('price', listing.price)
+        listing.main_image = form.data.get('main_image', listing.main_image)
+        listing.updated_at = datetime.utcnow()
 
-    if errors:
-        return jsonify({"errors": errors}), 400
+        # Save the changes
+        db.session.commit()
 
-    # Update the listing details
-    listing.title = data.get('title', listing.title)
-    listing.description = data.get('description', listing.description)
-    listing.address = data.get('address', listing.address)
-    listing.city = data.get('city', listing.city)
-    listing.state = data.get('state', listing.state)
-    listing.country = data.get('country', listing.country)
-    listing.zip_code = data.get('zip_code', listing.zip_code)
-    listing.price = data.get('price', listing.price)
-    listing.main_image = data.get('main_image', listing.main_image)
-    listing.updated_at = datetime.utcnow()
-    
-    # Save the changes
-    db.session.commit()
-
-    # Return the updated listing details
-    return jsonify({
-        "id": listing.id,
-        "created_by": listing.created_by,
-        "last_updated_by": listing.last_updated_by,
-        "title": listing.title,
-        "description": listing.description,
-        "address": listing.address,
-        "city": listing.city,
-        "state": listing.state,
-        "country": listing.country,
-        "zip_code": listing.zip_code,
-        "price": str(listing.price),
-        "main_image": listing.main_image,
-        "created_at": listing.created_at.strftime('%Y-%m-%dT%H:%M:%SZ'),
-        "updated_at": listing.updated_at.strftime('%Y-%m-%dT%H:%M:%SZ')
-    }), 200
-    
+        return jsonify({
+            "id": listing.id,
+            "created_by": listing.created_by,
+            "last_updated_by": listing.last_updated_by,
+            "title": listing.title,
+            "description": listing.description,
+            "address": listing.address,
+            "city": listing.city,
+            "state": listing.state,
+            "country": listing.country,
+            "zip_code": listing.zip_code,
+            "price": str(listing.price),
+            "main_image": listing.main_image,
+            "created_at": listing.created_at.strftime('%Y-%m-%dT%H:%M:%SZ'),
+            "updated_at": listing.updated_at.strftime('%Y-%m-%dT%H:%M:%SZ')
+        }), 200
+    else:
+        return jsonify({'errors': form.errors}), 400
 # delete route
 @listing_routes.route('/listings/<int:id>', methods=['DELETE'])
 @login_required

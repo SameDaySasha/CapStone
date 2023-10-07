@@ -33,9 +33,7 @@ function ListingForm() {
   
     try {
       const response = await dispatch(createListing(newListingData));
-      console.log('Response type:', response.type); // Log the response type
-      console.log('Response payload:', response.payload); // Log the response payload
-  
+      
       if (response.type === "listings/createListing/fulfilled") {
         if (response.payload && response.payload.id) {
           const newListingId = response.payload.id; 
@@ -44,6 +42,10 @@ function ListingForm() {
         } else {
           console.error('Unexpected payload structure:', response.payload);
         }
+      } else if (response.type === "listings/createListing/rejected") {
+        // Handle server-side validation errors here
+        console.error('Server-side validation failed:', response.error);
+        // You can show these errors to the user
       } else {
         console.error('Listing creation not fulfilled:', response);
       }
@@ -51,6 +53,7 @@ function ListingForm() {
       console.error('Error creating new listing:', error);
     }
   };
+  
   
   return (
     <div className="listingForm-container">

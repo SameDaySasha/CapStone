@@ -1,6 +1,9 @@
+/* Tarkov Style CSS for ListingForm - Subdued Brutalist Version */
+
+/* Container */
 .listingForm-container {
-    border: 2px solid limegreen;
-    background-color: rgba(0, 255, 0, 0.1);
+    border: 4px solid #4a4945; /* Concrete color */
+    background-color: rgba(0, 0, 0, 0.8); /* Dark background */
     padding: 20px;
     border-radius: 10px;
     display: flex;
@@ -8,44 +11,71 @@
     align-items: center;
     max-width: 600px;
     margin: auto;
-}
-
-.listingForm-form {
+  }
+  
+  /* Form */
+  .listingForm-form {
     width: 100%;
-}
-
-.listingForm-item {
-    border: 2px solid orange;
-    background-color: rgba(255, 165, 0, 0.1);
+  }
+  
+  /* Form Items */
+  .listingForm-item {
+    border: 2px solid #666; /* Rebar color */
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background */
     padding: 10px;
     border-radius: 10px;
     margin: 10px;
     display: flex;
     flex-direction: column;
-}
-
-.listingForm-label {
+  }
+  
+  /* Labels */
+  .listingForm-label {
     margin-bottom: 5px;
     font-weight: bold;
-}
-
-.listingForm-input, .listingForm-textarea {
+    color: #FFFFFF; /* White text */
+  }
+  
+  /* Input and Textarea */
+  .listingForm-input, .listingForm-textarea {
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #4a4945; /* Concrete color */
+    background-color: rgba(0, 0, 0, 0.5); /* Dark background */
+    color: #FFFFFF; /* White text */
     width: 100%;
-}
-
-.listingForm-button {
+    max-width: 100%; /* Ensure it doesn't exceed the form */
+    box-sizing: border-box; /* Include padding and border in width */
+  }
+  
+  /* Button */
+  .listingForm-button {
     padding: 10px 20px;
-    background-color: limegreen;
+    background-color: #4CAF50; /* Subdued green */
     border: none;
     border-radius: 5px;
     color: #fff;
     cursor: pointer;
     font-size: 16px;
-}
-
-.listingForm-button:hover {
-    background-color: darkgreen;
-}
+  }
+  
+  .listingForm-button:hover {
+    background-color: #45a049; /* Darker green */
+  }
+  
+  /* Error Message */
+  .error-message {
+    border: 2px solid red;
+    background-color: rgba(255, 0, 0, 0.5); /* Red background */
+    padding: 10px;
+    border-radius: 10px;
+    color: #FFFFFF; /* White text */
+    margin-top: 10px;
+    display: none; /* Initially hidden */
+  }
+  
+  /* Show error message when needed */
+  .show-error .error-message {
+    display: block;
+  }
+  
