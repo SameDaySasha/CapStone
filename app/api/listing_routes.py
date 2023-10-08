@@ -251,10 +251,7 @@ def get_all_showings_for_listing(listing_id):
             ]
             return jsonify(response_data), 200
         else:
-            return jsonify({
-                "error": "Error with GetAllShowingsForListingRoute",
-                "message": "No showings found for this listing"
-            }), 404
+            return jsonify([]), 200
     except Exception as e:
         return jsonify({
             "error": "Error with GetAllShowingsForListingRoute",

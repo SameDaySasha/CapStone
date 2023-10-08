@@ -29,7 +29,7 @@ function EditShowingForm({ listingId, showingId }) {
   
     try {
       const response = await dispatch(editShowing({ listingId, showingId, updatedData }));
-      if (response.type === "showings/editShowing/fulfilled") {
+      if (response.type === "showings/edit/fulfilled") {
         window.location.reload();
       } else {
         console.error('Showing edit not fulfilled:', response);
