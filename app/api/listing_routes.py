@@ -2,9 +2,9 @@ from flask import Blueprint, jsonify, request
 from app.models import Listing, db, Showing
 from datetime import datetime
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import CreateListingForm
+from app.forms import CreateListingForm, EditListingForm
 
-
+    
 
 
 
@@ -117,7 +117,7 @@ def update_listing(id):
         return jsonify({"errors": {"detail": "Listing not found"}}), 404
 
     # Populate form with existing data
-    form = CreateListingForm(data=request.get_json())
+    form = EditListingForm(data=request.get_json(), listing_id=id)  # Use EditListingForm and pass listing_id
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
