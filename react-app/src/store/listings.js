@@ -31,8 +31,16 @@ export const updateListing = createAsyncThunk('listings/update', async ({ id, up
     body: JSON.stringify(updatedData),
     credentials: 'include',
   });
-  return response.json();
+
+  if (response.ok) {
+    return response.json();
+  } else {
+    const errorData = await response.json();
+    // Throw the errors object for better handling
+    throw new Error(JSON.stringify(errorData.errors));
+  }
 });
+
 
 export const deleteListing = createAsyncThunk('listings/delete', async (id) => {
   const response = await fetch(`/api/listings/${id}`, {

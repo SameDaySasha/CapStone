@@ -56,17 +56,16 @@ function EditListingForm() {
 
     try {
       const response = await dispatch(updateListing({ id, updatedData }));
-
+    
       if (response.type === "listings/update/fulfilled") {
         history.push(`/listings/${id}`); // Redirect to the edited listing page
       } else if (response.type === "listings/update/rejected") {
-        setErrors(response.error);
-      } else {
-        console.error('Listing update not fulfilled:', response);
+        const parsedErrors = JSON.parse(response.error.message); // Parsing the stringified errors object
+        setErrors(parsedErrors);
       }
     } catch (error) {
       console.error('Error updating listing:', error);
-    }    
+    }  
   };
 
   return (
