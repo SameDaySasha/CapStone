@@ -149,7 +149,7 @@ function EditListingForm() {
             <input type="text" value={country} onChange={(e) => setCountry(e.target.value)} required className="listingForm-input" />
           </label>
         </div>
-        {errors.zipCode && <div className="listingForm-error">{errors.zipCode[0]}</div>}
+        {errors.zip_code && <div className="listingForm-error">{errors.zip_code[0]}</div>}
         <div className="listingForm-item">
           <label className="listingForm-label">
             Zip Code:
