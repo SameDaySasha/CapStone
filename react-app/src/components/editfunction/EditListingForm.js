@@ -41,7 +41,23 @@ function EditListingForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    // Initialize an empty errors object
+    let newErrors = {};
+  
+    // Check if zipCode is longer than 10 characters
+    if (zipCode.length > 10) {
+      newErrors.zipCode = ["Zip code must be 10 or less characters long"];
+    }
+    if (state.length > 20) {
+      newErrors.state = ["State must be 20 or less characters long"];
+    }
+    // If there are any errors, update the state and return early
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+  
     const updatedData = {
       title,
       description,
@@ -53,7 +69,6 @@ function EditListingForm() {
       price,
       main_image: mainImage,
     };
-
     try {
       const response = await dispatch(updateListing({ id, updatedData }));
     

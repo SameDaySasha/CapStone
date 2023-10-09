@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createListing, fetchListingById } from '../../store/listings';
 // import './listingform.css';
+
 
 function ListingForm() {
   const dispatch = useDispatch();
@@ -18,9 +19,28 @@ function ListingForm() {
   const [mainImage, setMainImage] = useState('');
   const [errors, setErrors] = useState({});
 
+
+// useEffect(() => {
+//   setErrors({ ...errors, zip_code: ["This is a test error"] });
+// }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+ // Initialize an empty errors object
+ let newErrors = {};
 
+ // Check if zipCode is longer than 10 characters
+ if (zipCode.length > 10) {
+   newErrors.zip_code = ["Zip code must be 10 or less characters long"];
+ }
+ if (state.length > 20) {
+  newErrors.state = ["State must be 20 or less characters long"];
+}
+ // If there are any errors, update the state and return early
+ if (Object.keys(newErrors).length > 0) {
+   setErrors(newErrors);
+   return;
+ }
     const newListingData = {
       title,
       description,
@@ -100,7 +120,7 @@ function ListingForm() {
             <input type="text" value={country} onChange={(e) => setCountry(e.target.value)} required className="listingForm-input" />
           </label>
         </div>
-        {errors.zipCode && <div className="listingForm-error">{errors.zipCode[0]}</div>}
+        {errors.zip_code && <div className="listingForm-error">{errors.zip_code[0]}</div>}
         <div className="listingForm-item">
           <label className="listingForm-label">
             Zip Code:
