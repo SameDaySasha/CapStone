@@ -24,23 +24,46 @@ function ListingForm() {
 //   setErrors({ ...errors, zip_code: ["This is a test error"] });
 // }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
- // Initialize an empty errors object
- let newErrors = {};
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
- // Check if zipCode is longer than 10 characters
- if (zipCode.length > 10) {
-   newErrors.zip_code = ["Zip code must be 10 or less characters long"];
- }
- if (state.length > 20) {
-  newErrors.state = ["State must be 20 or less characters long"];
-}
- // If there are any errors, update the state and return early
- if (Object.keys(newErrors).length > 0) {
-   setErrors(newErrors);
-   return;
- }
+  // Initialize an empty errors object
+  let newErrors = {};
+
+  // Validate each field based on your database constraints
+  if (title.length > 255) {
+    newErrors.title = ["Title must be 255 or less characters long"];
+  }
+
+  if (address.length > 255) {
+    newErrors.address = ["Address must be 255 or less characters long"];
+  }
+
+  if (city.length > 255) {
+    newErrors.city = ["City must be 255 or less characters long"];
+  }
+
+  if (state.length > 20) {
+    newErrors.state = ["State must be 20 or less characters long"];
+  }
+
+  if (country.length > 255) {
+    newErrors.country = ["Country must be 255 or less characters long"];
+  }
+
+  if (zipCode.length > 10) {
+    newErrors.zip_code = ["Zip code must be 10 or less characters long"];
+  }
+
+  if (mainImage && mainImage.length > 255) {
+    newErrors.main_image = ["Main image URL must be 255 or less characters long"];
+  }
+
+  // If there are any errors, update the state and return early
+  if (Object.keys(newErrors).length > 0) {
+    setErrors(newErrors);
+    return;
+  }
     const newListingData = {
       title,
       description,
