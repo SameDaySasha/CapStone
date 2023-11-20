@@ -53,6 +53,21 @@ export const deleteListing = createAsyncThunk('listings/delete', async (id) => {
   return response.json();
 });
 
+// New thunk for updating the bid amount
+export const updateBid = createAsyncThunk('listings/updateBid', async ({ listingId, newBid }) => {
+  const response = await fetch(`/api/listings/${listingId}/current_price`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ price: newBid }), // Updated to match the API expectation
+  });
+  if (!response.ok) {
+    throw new Error('Failed to update bid');
+  }
+  return { listingId, newBid: await response.json() };
+});
+
 const listingsSlice = createSlice({
   name: 'listings',
   initialState: {
@@ -81,6 +96,15 @@ const listingsSlice = createSlice({
             state.all = state.all.filter(listing => listing.id !== payload.id);
             if (state.current && state.current.id === payload.id) {
               state.current = null;
+            }
+          }else if (type === updateBid.fulfilled.type) {
+            // Handle the updateBid action
+            const index = state.all.findIndex(listing => listing.id === payload.listingId);
+            if (index !== -1) {
+              state.all[index].price = payload.newBid.price; // Updated to match API response
+            }
+            if (state.current && state.current.id === payload.listingId) {
+              state.current.price = payload.newBid.price; // Updated to match API response
             }
           }
         }

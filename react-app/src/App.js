@@ -10,6 +10,7 @@ import ListingsPage from "./components/homepage/homepage";
 import ListingDetailPage from "./components/ListingsDetailPage/listingsdetail"; 
 import EditListingForm from "./components/editfunction/EditListingForm.js";
 import Banner from "./components/homepage/banner.js"; // Import the Banner component. Adjust the path as needed.
+import BidInput from './components/BidInput/bidInput'; // Import the BidInput component
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/listings/:id" exact>
-            <ListingDetailPage />
+            <ListingDetailPage BidInput={BidInput} />
           </Route>
           <Route path="/listings/edit/:id" exact>
             <EditListingForm /> {/* Route to render the EditListingForm component */}

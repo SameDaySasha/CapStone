@@ -1,17 +1,19 @@
 // ListingDetailPage.jsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchListingById, selectCurrentListing } from '../../store/listings';
+import { fetchListingById, selectCurrentListing, updateBid } from '../../store/listings';
 import './ListingDetailPage.css';
 import EditButton from '../editfunction/editbutton';
 import DeleteButton from '../DeleteFunction/deleteListingButton';
 import ShowingDisplay from '../showings/ShowingDisplay';
+import BidInput from '../BidInput/bidInput'; // Make sure the path is correct
 
 function ListingDetailPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const currentListing = useSelector(selectCurrentListing);
+  const [latestBid, setLatestBid] = useState(currentListing?.price);
 
   useEffect(() => {
     if (id) {
@@ -19,9 +21,18 @@ function ListingDetailPage() {
     }
   }, [id, dispatch]);
 
+  useEffect(() => {
+    setLatestBid(currentListing?.price);
+  }, [currentListing]);
+
+  const handleBidSubmit = (newBid) => {
+    dispatch(updateBid({ listingId: id, newBid }));
+  };
+
   if (!currentListing) {
     return <div>Loading...</div>;
   }
+
 
   return (
     <div className="detail-container">
