@@ -320,3 +320,34 @@ def delete_showing(listing_id, showing_id):
         db.session.rollback()
         return jsonify({"error": f"Error with deleteShowingRoute - {str(e)}"}), 500
 
+
+@listing_routes.route('/listings/<int:listing_id>/current_price', methods=['PATCH'])
+@login_required
+def update_current_price(listing_id):
+    # Check if the current user is a customer
+    if current_user.role != 'customer':
+        return jsonify({"error": "Access forbidden: Insufficient permissions"}), 403
+
+    listing = Listing.query.get(listing_id)
+    if not listing:
+        return jsonify({"error": "Listing not found"}), 404
+
+    data = request.get_json()
+    new_price = data.get('current_price')
+    if new_price is None:
+        return jsonify({"error": "No price provided"}), 400
+
+    # Check if the new bid is greater than the current price
+    if new_price <= listing.current_price:
+        return jsonify({"error": "New bid must be higher than the current price"}), 400
+
+    # Update the listing's current price
+    listing.current_price = new_price
+    listing.updated_at = datetime.utcnow()
+    db.session.commit()
+
+    return jsonify({
+        "id": listing.id,
+        "current_price": str(listing.current_price),
+        "updated_at": listing.updated_at.strftime('%Y-%m-%dT%H:%M:%SZ')
+    }), 200
