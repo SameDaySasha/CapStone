@@ -333,21 +333,21 @@ def update_current_price(listing_id):
         return jsonify({"error": "Listing not found"}), 404
 
     data = request.get_json()
-    new_price = data.get('current_price')
+    new_price = data.get('price')
     if new_price is None:
         return jsonify({"error": "No price provided"}), 400
 
     # Check if the new bid is greater than the current price
-    if new_price <= listing.current_price:
+    if new_price <= listing.price:
         return jsonify({"error": "New bid must be higher than the current price"}), 400
 
     # Update the listing's current price
-    listing.current_price = new_price
+    listing.price = new_price
     listing.updated_at = datetime.utcnow()
     db.session.commit()
 
     return jsonify({
         "id": listing.id,
-        "current_price": str(listing.current_price),
+        "price": str(listing.price),
         "updated_at": listing.updated_at.strftime('%Y-%m-%dT%H:%M:%SZ')
     }), 200

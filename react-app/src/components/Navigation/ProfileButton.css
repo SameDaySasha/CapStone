@@ -1,11 +1,11 @@
 /* Container */
 .profile-container {
-    position: relative;
-    top: 0;
-    right: 0;
-    z-index: 10;
-  }
-  
+  position: relative;
+  top: 0;
+  right: 0;
+  z-index: 10; /* Ensure it's above other elements but below the dropdown */
+}
+
 /* Burger button */
 .burger-button {
   background: transparent;
@@ -17,25 +17,42 @@
 .burger-line {
   width: 25px;
   height: 3px;
-  background: rgb(250, 248, 248);
-  margin: 2px 0;
+  background: #0f0; /* Neon green lines */
+  margin: 5px 0; /* Increase space between lines */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.profile-container.show-dropdown .profile-dropdown {
+  display: block;
 }
 
 /* Dropdown */
 .profile-dropdown {
   display: block;
-  position: relative;
-  top: 40px;
+  position: absolute;
+  top: 100%;
   right: 0;
-  color:black;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: #121212;
+  border: 1px solid #333;
+  border-radius: 4px;
   width: 200px;
+  box-shadow: 0 8px 16px rgba(0, 255, 0, 0.2);
   z-index: 11;
+  opacity: 0; /* Start with dropdown invisible */
+  visibility: hidden; /* Dropdown not interactable */
+  transition: opacity 0.5s, visibility 0.5s; /* Transition effect for opacity and visibility */
 }
 
-.profile-dropdown.hidden {
-  display: none;
+.profile-container:hover .profile-dropdown {
+  visibility: visible; /* Make dropdown interactable */
+  opacity: 1; /* Fade in dropdown */
+}
+
+/* Use this class to show the dropdown, toggled by JavaScript */
+.profile-container.show-dropdown .profile-dropdown {
+  visibility: visible; /* Make dropdown interactable */
+  opacity: 1; /* Fade in dropdown */
+  transition-delay: 0s; /* No delay when showing */
 }
 
 /* List items */
@@ -43,20 +60,29 @@
 .profile-email,
 .profile-logout {
   padding: 12px;
-  border-bottom: 1px solid #eee;
+  color: #ddd; /* Light grey text for contrast */
+  border-bottom: 1px solid #333; /* Subtle separators */
 }
 
 .profile-logout button {
   background: transparent;
   border: none;
   cursor: pointer;
+  color: #0f0; /* Neon green text */
+  padding: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.profile-logout button:hover {
+  color: #8f0; /* Brighter green on hover for a neon glow effect */
 }
 
 /* New styling for login and signup buttons */
 .login-btn-container button,
 .signup-btn-container button {
-  background-color: #444;
-  border: 1px solid #555;
+  background-color: #333; /* Darker button background */
+  border: 1px solid #444;
   border-radius: 3px;
   color: #ddd;
   cursor: pointer;
@@ -67,6 +93,33 @@
 
 .login-btn-container button:hover,
 .signup-btn-container button:hover {
-  background-color: #555;
-  color: #00ff00;
+  background-color: #444;
+  color: #0f0; /* Neon text color on hover */
+}
+
+
+.profile-create-listing {
+  background-color: #333; /* Dark background for the button */
+  color: #0f0; /* Neon green text */
+  border: 1px solid #0f0; /* Neon green border */
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 0 5px rgba(15, 255, 15, 0.75); /* Glow effect */
+  box-shadow: 0 0 5px rgba(15, 255, 15, 0.75); /* Glow effect */
+  outline: none;
+}
+
+.profile-create-listing:hover {
+  background-color: #0f0; /* Neon green background on hover */
+  color: #333; /* Dark text on hover */
+  box-shadow: 0 0 10px rgba(15, 255, 15, 1); /* Increased glow effect on hover */
+}
+
+.profile-create-listing:focus {
+  box-shadow: 0 0 10px rgba(15, 255, 15, 1); /* Increased glow effect on focus */
 }

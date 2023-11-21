@@ -8,13 +8,13 @@ import EditButton from '../editfunction/editbutton';
 import DeleteButton from '../DeleteFunction/deleteListingButton';
 import ShowingDisplay from '../showings/ShowingDisplay';
 import BidInput from '../BidInput/bidInput'; // Make sure the path is correct
-
+import { selectUser } from '../../store/session'; 
 function ListingDetailPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const currentListing = useSelector(selectCurrentListing);
   const [latestBid, setLatestBid] = useState(currentListing?.price);
-
+  const sessionUser = useSelector(selectUser); // Select sessionUser from the session state
   useEffect(() => {
     if (id) {
       dispatch(fetchListingById(id));
@@ -45,6 +45,7 @@ function ListingDetailPage() {
       </div>
       <div className="detail-item">
         <h2 className="latest-bid">Latest Bid: {currentListing.price}</h2>
+        <BidInput latestBid={latestBid} onBidSubmit={handleBidSubmit} sessionUser={sessionUser} />
       </div>
       <div className="detail-item">
         <img src={currentListing.main_image} alt={`${currentListing.title} main image`} />

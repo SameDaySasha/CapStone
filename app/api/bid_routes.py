@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
-from .models import db, Bid, Listing
+from ..models import db, Bid, Listing
 from sqlalchemy.exc import SQLAlchemyError
 
 # Creating a Blueprint for bids
