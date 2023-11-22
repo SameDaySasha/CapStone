@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import './bidInput.css';
+import onBidSubmit from '../../store/listings';
 function BidInput({ latestBid, onBidSubmit, sessionUser }) {
   const [bid, setBid] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const bidValue = parseFloat(bid);
     if (!isNaN(bidValue) && bidValue > latestBid) {
-      onBidSubmit(bidValue)
-        .then(() => {
-          setBid(''); // Reset the input field
-          setErrorMessage(''); // Clear any error messages
-          // Optionally, perform additional actions on successful submission
-        })
-        .catch((error) => {
-          // Handle error here, maybe set an error message
-          setErrorMessage('Failed to submit bid. Please try again.');
-        });
+     
+      try {
+        await onBidSubmit(bidValue);
+        setBid('');
+        setErrorMessage('');
+        window.location.reload();
+      }catch (error) {
+        setErrorMessage('Failed to submit bid. Please try again.');
+      }
     } else {
       setErrorMessage("Your bid must be higher than the current bid.");
     }
