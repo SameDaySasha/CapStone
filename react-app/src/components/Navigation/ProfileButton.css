@@ -98,28 +98,32 @@
 }
 
 
-.profile-create-listing {
+.profile-create-listing a button {
   background-color: #333; /* Dark background for the button */
   color: #0f0; /* Neon green text */
   border: 1px solid #0f0; /* Neon green border */
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 4px;
+  padding: 5px 10px; /* Adjusted padding to match the size of 'Edit Listing' button */
+  font-size: 13.3333px; /* Same font size */
+  border-radius: 3px; /* Same border radius */
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out; /* Transition for hover effect */
   text-shadow: 0 0 5px rgba(15, 255, 15, 0.75); /* Glow effect */
   box-shadow: 0 0 5px rgba(15, 255, 15, 0.75); /* Glow effect */
   outline: none;
+  margin: 5px; /* Space around the button */
+  display: inline-block; /* To enable margin and proper sizing */
+  text-align: center; /* Ensure text is centered */
 }
 
-.profile-create-listing:hover {
+.profile-create-listing a button:hover {
   background-color: #0f0; /* Neon green background on hover */
   color: #333; /* Dark text on hover */
+  border: 1px solid #0f0; /* Neon green border on hover */
   box-shadow: 0 0 10px rgba(15, 255, 15, 1); /* Increased glow effect on hover */
 }
 
-.profile-create-listing:focus {
-  box-shadow: 0 0 10px rgba(15, 255, 15, 1); /* Increased glow effect on focus */
+/* Add this class to the button when you want to trigger the hover effect */
+.profile-create-listing a button.hover-effect {
+  transition-delay: 0.5s; /* Delay the hover effect */
 }
