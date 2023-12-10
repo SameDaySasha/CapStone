@@ -1,0 +1,41 @@
+/* Footer container */
+.footer-ctn {
+    background-color: #1b1b1b; /* Assuming a dark theme for footer */
+    text-align: center; /* Center align the content */
+    color: #c5c6c7; /* Light grey text for readability */
+    font-family: 'Courier New', monospace; /* Monospaced font for a sleek look */
+    padding: 10px 0; /* Top and bottom padding */
+}
+
+/* The container for the socials, if you want everything centered */
+.footer-inner-ctn {
+    display: flex; /* Flex container */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center align the flex children */
+    justify-content: center; /* Center justify the flex children */
+}
+
+/* The container that holds both social links */
+.links {
+    display: flex; /* Flex container */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    gap: 10px; /* Spacing between icons */
+}
+
+/* Style for the social links */
+.links a {
+    color: #c5c6c7; /* Icon color */
+    font-size: 24px; /* Icon size */
+}
+
+/* Additional style for FontAwesome icons to increase size */
+.links a .fa {
+    font-size: 1.5em; /* Slightly larger than the surrounding text */
+}
+
+/* Style for text paragraphs */
+.socials p {
+    margin: 5px 0; /* Some vertical space between the elements */
+    color: inherit; /* Inherits the color from the parent container */
+}

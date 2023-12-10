@@ -11,7 +11,7 @@ import ListingDetailPage from "./components/ListingsDetailPage/listingsdetail";
 import EditListingForm from "./components/editfunction/EditListingForm.js";
 import Banner from "./components/homepage/banner.js"; // Import the Banner component. Adjust the path as needed.
 import BidInput from './components/BidInput/bidInput'; // Import the BidInput component
-
+import Footer from './components/footer/index.js'; // Import the Footer component
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -45,7 +45,9 @@ function App() {
             <ListingsPage />
           </Route>
         </Switch>
+        
       )}
+      <Footer /> {/* The Footer component */}
     </>
   );
 }
